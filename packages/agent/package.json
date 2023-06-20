@@ -1,0 +1,76 @@
+{
+    "name": "@neeboo/agent",
+    "version": "0.15.6",
+    "author": "DFINITY Stiftung <sdk@dfinity.org>, neeboo",
+    "license": "Apache-2.0",
+    "description": "JavaScript and TypeScript library to interact with the Internet Computer",
+    "homepage": "https://internetcomputer.org",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dfinity/agent-js-fork.git",
+        "directory": "packages/agent"
+    },
+    "bugs": {
+        "url": "https://github.com/dfinity/agent-js-fork/issues"
+    },
+    "keywords": [
+        "internet computer",
+        "internet-computer",
+        "ic",
+        "dfinity",
+        "agent",
+        "actor",
+        "dfx",
+        "canister",
+        "candid",
+        "motoko",
+        "javascript",
+        "typescript",
+        "blockchain",
+        "crypto",
+        "distributed",
+        "api",
+        "sdk"
+    ],
+    "main": "build/index.js",
+    "module": "build/index.js",
+    "scripts": {
+        "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build && swc src -d build && tsc-alias",
+        "build:watch": "tsc -b --watch",
+        "bundle": "rm -rf ./dist && esbuild --banner:js='var process={\"env\":\"production\"};' --bundle src/index.ts --outfile=dist/index.js --target=es2017 --format=esm --platform=browser",
+        "mini": "size-limit",
+        "eslint:fix": "npm run lint -- --fix",
+        "eslint": "eslint --ext '.js,.jsx,.ts,.tsx' src/index.ts src/auth.ts src/request_id.ts src/request_id.test.ts",
+        "lint": "npm run eslint",
+        "make:docs/reference": "typedoc src/index.ts --out ../../docs/generated/agent --excludeInternal",
+        "release": "npm publish",
+        "test": "jest --verbose",
+        "test:coverage": "jest --verbose --collectCoverage",
+        "tslint:fix": "npm run lint -- --fix",
+        "tslint": "tslint --project tsconfig.json --config tslint.json"
+    },
+    "peerDependencies": {
+        "@dfinity/candid": "workspace:*",
+        "@dfinity/principal": "workspace:*"
+    },
+    "dependencies": {
+        "base64-arraybuffer": "^0.2.0",
+        "bignumber.js": "^9.0.0",
+        "borc": "^2.1.1",
+        "js-sha256": "0.9.0",
+        "simple-cbor": "^0.4.1",
+        "ts-node": "^10.8.2"
+    },
+    "devDependencies": {
+        "@trust/webcrypto": "^0.9.2",
+        "eslint-config-custom": "workspace:*",
+        "isomorphic-fetch": "^3.0.0",
+        "jest": "^28.1.2",
+        "@size-limit/webpack": "^8.2.4",
+        "@size-limit/esbuild": "^8.2.4",
+        "@size-limit/file": "^8.2.4",
+        "text-encoding": "^0.7.0",
+        "tsconfig": "workspace:*",
+        "whatwg-fetch": "^3.0.0"
+    }
+}

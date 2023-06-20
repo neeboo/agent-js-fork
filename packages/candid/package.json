@@ -1,0 +1,64 @@
+{
+    "name": "@neeboo/candid",
+    "version": "0.15.6",
+    "author": "DFINITY Stiftung <sdk@dfinity.org>, neeboo",
+    "license": "Apache-2.0",
+    "description": "JavaScript and TypeScript library to work with candid interfaces",
+    "homepage": "https://internetcomputer.org",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dfinity/agent-js-fork.git",
+        "directory": "packages/candid"
+    },
+    "bugs": {
+        "url": "https://github.com/dfinity/agent-js-fork/issues"
+    },
+    "keywords": [
+        "internet computer",
+        "ic",
+        "dfinity",
+        "canister",
+        "webauthn",
+        "identity",
+        "principal",
+        "dfx",
+        "candid",
+        "motoko",
+        "javascript",
+        "typescript",
+        "blockchain",
+        "crypto",
+        "distributed",
+        "api"
+    ],
+    "main": "build/index.js",
+    "module": "build/index.js",
+    "scripts": {
+        "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build && swc src -d build && tsc-alias",
+        "bundle": "rm -rf ./dist && esbuild --banner:js='var process={\"env\":\"production\"};' --bundle src/index.ts --outfile=dist/index.js --target=es2017 --format=esm --platform=browser",
+        "mini": "size-limit",
+        "ci": "npm run prettier && npm run lint && npm run test",
+        "lint": "eslint 'src' --ext '.js,.jsx,.ts,.tsx'",
+        "lint:fix": "npm run lint -- --fix",
+        "make:docs/reference": "typedoc src/index.ts --out ../../docs/generated/candid --excludeInternal",
+        "prettier": "prettier --check \"src/**/*.ts\"",
+        "prettier:write": "npm run prettier -- --write",
+        "test": "jest",
+        "test:coverage": "jest --verbose --collectCoverage"
+    },
+    "devDependencies": {
+        "@dfinity/principal": "workspace:*",
+        "@size-limit/webpack": "^8.2.4",
+        "@size-limit/esbuild": "^8.2.4",
+        "@size-limit/file": "^8.2.4",
+        "eslint-config-custom": "workspace:*",
+        "prettier": "^2.0.5",
+        "text-encoding": "^0.7.0",
+        "ts-jest": "^28.0.5",
+        "tsconfig": "workspace:*",
+        "whatwg-fetch": "^3.0.0"
+    },
+    "dependencies": {
+        "ts-node": "^10.8.2"
+    }
+}

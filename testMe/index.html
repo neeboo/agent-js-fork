@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #root {
+            width: 100%;
+            height: 500px;
+        }
+
+        /* canvas {
+            border: 1px solid black;
+        } */
+    </style>
+
+    <script type="module">
+        import ReactDOM from 'https://esm.sh/react-dom'
+        import React, { useRef, useState } from 'https://esm.sh/react'
+        import { Canvas, useFrame } from 'https://esm.sh/@react-three/fiber'
+        import htm from 'https://esm.sh/htm'
+        import { Secp256k1KeyIdentity } from '../packages/identity-secp256k1/dist/index.js'
+        import { Ed25519KeyIdentity } from '../packages/identity/dist/index.js'
+
+
+        const html = htm.bind(React.createElement)
+
+        const secp = Secp256k1KeyIdentity.generate().getPrincipal().toText();
+        console.log({ secp })
+        const ed = Ed25519KeyIdentity.generate().getPrincipal().toText();
+        console.log({ ed })
+
+        // console.log(html2canvas);
+
+        function Box(props) {
+            const mesh = useRef()
+            const [hovered, setHover] = useState(false)
+            const [active, setActive] = useState(false)
+            useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
+            return html`
+            <mesh
+                ...${props}
+                ref=${mesh}
+                scale=${active ? 1.5 : 1}
+                rotation=${[Math.PI / 2, 0, 0]}
+                onClick=${() => setActive(!active)}
+                onPointerOver=${() => setHover(true)}
+                onPointerOut=${() => setHover(false)}
+            >
+                <boxGeometry args=${[2, 1, 1]} />
+                <meshStandardMaterial color=${'#6DF2E6'} />
+            </mesh>`
+        }
+
+        ReactDOM.render(
+            html`
+        <${Canvas}>
+            <ambientLight />
+            <pointLight position=${[10, 10, 10]} />
+            <${Box} position=${[-1.2, 0, 0]} />
+        <//>`,
+            document.getElementById('root'),
+        )
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- <script type="text/javascript"
+        src="https://www.ord.io/content/be2585187c2e016b654ecc1f207fa73c38e55eee404cdf709346c4511689d24ai0"></script> -->
+    <!-- <script type="text/javascript" src="../packages/identity-secp256k1/dist/index.js" async></script> -->
+
+
+</body>
+
+</html>

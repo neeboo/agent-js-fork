@@ -1,0 +1,71 @@
+{
+  "name": "@neeboo/identity",
+  "version": "0.15.6",
+  "author": "DFINITY Stiftung <sdk@dfinity.org>, neeboo",
+  "license": "Apache-2.0",
+  "description": "JavaScript and TypeScript library to manage identity with the Internet Computer",
+  "homepage": "https://internetcomputer.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dfinity/agent-js-fork.git",
+    "directory": "packages/identity"
+  },
+  "bugs": {
+    "url": "https://github.com/dfinity/agent-js-fork/issues"
+  },
+  "keywords": [
+    "internet computer",
+    "ic",
+    "dfinity",
+    "canister",
+    "webauthn",
+    "identity",
+    "principal",
+    "authentication",
+    "dfx",
+    "motoko",
+    "javascript",
+    "typescript",
+    "blockchain",
+    "crypto",
+    "distributed",
+    "api"
+  ],
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "scripts": {
+    "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build && swc src -d build && tsc-alias",
+    "bundle": "rm -rf ./dist && esbuild --banner:js='var process={\"env\":\"production\"};' --bundle src/index.ts --outfile=dist/index.js --target=es2017 --format=esm --platform=browser",
+    "mini": "size-limit",
+    "lint": "eslint 'src' --ext '.js,.jsx,.ts,.tsx'",
+    "lint:fix": "npm run lint -- --fix",
+    "make:docs/reference": "typedoc src/index.ts --out ../../docs/generated/identity",
+    "release": "npm publish",
+    "test": "jest",
+    "test:coverage": "jest --verbose --collectCoverage"
+  },
+  "dependencies": {
+    "@dfinity/agent": "workspace:*",
+    "@dfinity/principal": "workspace:*",
+    "@peculiar/webcrypto": "^1.4.0",
+    "borc": "^2.1.1",
+    "js-sha256": "^0.9.0",
+    "tweetnacl": "^1.0.1",
+    "simple-cbor": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/webappsec-credential-management": "^0.6.2",
+    "@size-limit/webpack": "^8.2.4",
+    "@size-limit/esbuild": "^8.2.4",
+    "@size-limit/file": "^8.2.4",
+    "eslint-config-custom": "workspace:*",
+    "esbuild": "^0.15.16",
+    "tsconfig": "workspace:*",
+    "idb-keyval": "^6.2.0",
+    "jest": "^28.1.2",
+    "text-encoding": "^0.7.0",
+    "ts-jest": "^28.0.5",
+    "tslint": "^5.20.1",
+    "whatwg-fetch": "^3.0.0"
+  }
+}

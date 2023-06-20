@@ -1,0 +1,40 @@
+{
+    "name": "@neeboo/identity-secp256k1",
+    "version": "0.15.6",
+    "author": "DFINITY Stiftung <sdk@dfinity.org>, neeboo",
+    "license": "Apache-2.0",
+    "description": "JavaScript and TypeScript library to manage Secp256k1KeyIdentities for use with the Internet Computer",
+    "main": "build/index.js",
+    "module": "build/index.js",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build && swc src -d build  && tsc-alias",
+        "eslint": "eslint --ext '.js,.jsx,.ts,.tsx'",
+        "make:docs/reference": "typedoc src/index.ts --out ../../docs/generated/identity-secp256k1 --excludeInternal",
+        "bundle": "rm -rf ./dist && esbuild --banner:js='var process={\"env\":\"production\"};' --bundle src/index.ts --outfile=dist/index.js --target=es2017 --format=esm --platform=browser",
+        "test": "jest",
+        "test:coverage": "jest --verbose --collectCoverage",
+        "mini": "size-limit"
+    },
+    "dependencies": {
+        "@dfinity/agent": "workspace:*",
+        "@noble/hashes": "^1.3.1",
+        "assert": "^2.0.0",
+        "bip39": "^3.1.0",
+        "bs58check": "^3.0.1",
+        "buffer": "^6.0.3",
+        "secp256k1": "^4.0.3",
+        "tweetnacl": "^1.0.1"
+    },
+    "devDependencies": {
+        "@size-limit/esbuild": "^8.2.4",
+        "@size-limit/file": "^8.2.4",
+        "@size-limit/webpack": "^8.2.4",
+        "@types/bs58check": "^2.1.0",
+        "@types/secp256k1": "^4.0.3",
+        "eslint-config-custom": "workspace:*",
+        "tsconfig": "workspace:*"
+    }
+}

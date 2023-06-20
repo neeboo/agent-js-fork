@@ -1,0 +1,18 @@
+dist/
+!/packages/types/build/
+build/
+artifacts/
+.idea
+*.log
+node_modules/
+.DS_store
+.vscode/
+**/*.tsbuildinfo
+*/**/yarn.lock
+# */**/package-lock.json
+yarn.lock
+!/packages/types/build/*.d.ts
+/packages/**/*.d.ts
+/packages/**/*.d.ts.map
+!/packages/**/canisters/*.d.ts
+.dfx.turbo

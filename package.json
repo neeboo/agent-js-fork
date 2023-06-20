@@ -1,0 +1,91 @@
+{
+  "name": "@astrox/agent-js-fork",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bundle:all": "swc scripts -d dist/scripts && node dist/scripts/bundle.js",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "build": "turbo run build --no-cache  --force",
+    "bundle": "turbo run bundle --no-cache  --force",
+    "mini": "turbo run mini --no-cache  --force",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "size": "size-limit --json",
+    "publish-packages": "changeset && changeset publish"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.26.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.210",
+    "@swc/helpers": "^0.4.3",
+    "@swc/jest": "^0.2.21",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18.0.3",
+    "@types/shelljs": "^0.8.11",
+    "@types/webpack": "^5.28.0",
+    "browserify": "^17.0.0",
+    "browserslist": "^4.21.1",
+    "buffer": "^6.0.3",
+    "crc": "^4.1.1",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.15.16",
+    "eslint-config-custom": "workspace:*",
+    "jest": "^29.0.2",
+    "js-sha256": "^0.9.0",
+    "prettier": "latest",
+    "regenerator-runtime": "^0.13.9",
+    "rollup": "^2.75.7",
+    "rollup-plugin-swc": "^0.2.1",
+    "shelljs": "^0.8.5",
+    "size-limit": "^8.2.4",
+    "size-limit-node-esbuild": "^0.2.0",
+    "swc-loader": "^0.2.3",
+    "swcify": "^1.0.1",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-node": "^10.8.2",
+    "tsc-alias": "^1.6.11",
+    "tslib": "^2.4.0",
+    "turbo": "latest",
+    "webpack": "^5.73.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "process": "^0.11.10"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "size-limit": [
+    {
+      "name": "@dfinity/agent",
+      "path": "./packages/agent/dist/index.js",
+      "limit": "100 kB"
+    },
+    {
+      "name": "@dfinity/candid",
+      "path": "./packages/candid/dist/index.js"
+    },
+    {
+      "name": "@dfinity/principal",
+      "path": "./packages/principal/dist/index.js",
+      "limit": "10 kB"
+    },
+    {
+      "name": "@dfinity/identity",
+      "path": "./packages/identity/dist/index.js",
+      "limit": "100 kB"
+    },
+    {
+      "name": "@dfinity/identity-secp256k1",
+      "path": "./packages/identity-secp256k1/dist/index.js",
+      "limit": "270 kB"
+    }
+  ],
+  "packageManager": "pnpm@7.18.1"
+}
