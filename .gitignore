@@ -16,3 +16,4 @@ yarn.lock
 /packages/**/*.d.ts.map
 !/packages/**/canisters/*.d.ts
 .dfx.turbo
+**/*.turbo
