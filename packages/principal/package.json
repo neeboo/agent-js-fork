@@ -7,14 +7,11 @@
   "homepage": "https://internetcomputer.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dfinity/agent-js-fork.git",
+    "url": "https://github.com/neeboo/agent-js-fork.git",
     "directory": "packages/principal"
   },
   "bugs": {
-    "url": "https://github.com/dfinity/agent-js-fork/issues"
-  },
-  "publishConfig": {
-    "access": "public"
+    "url": "https://github.com/neeboo/agent-js-fork/issues"
   },
   "keywords": [
     "internet computer",
@@ -36,6 +33,9 @@
   ],
   "main": "build/index.js",
   "module": "build/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build &&swc src -d build &&tsc-alias",
     "bundle": "rm -rf ./dist && esbuild --banner:js='var process={\"env\":\"production\"};' --bundle src/index.ts --outfile=dist/index.js --target=es2017 --format=esm --platform=browser",

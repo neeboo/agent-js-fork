@@ -4,6 +4,14 @@
     "author": "DFINITY Stiftung <sdk@dfinity.org>, neeboo",
     "license": "Apache-2.0",
     "description": "JavaScript and TypeScript library to manage Secp256k1KeyIdentities for use with the Internet Computer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/neeboo/agent-js-fork.git",
+        "directory": "packages/identity"
+    },
+    "bugs": {
+        "url": "https://github.com/neeboo/agent-js-fork/issues"
+    },
     "main": "build/index.js",
     "module": "build/index.js",
     "publishConfig": {

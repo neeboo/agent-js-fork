@@ -7,11 +7,11 @@
     "homepage": "https://internetcomputer.org",
     "repository": {
         "type": "git",
-        "url": "https://github.com/dfinity/agent-js-fork.git",
+        "url": "https://github.com/neeboo/agent-js-fork.git",
         "directory": "packages/agent"
     },
     "bugs": {
-        "url": "https://github.com/dfinity/agent-js-fork/issues"
+        "url": "https://github.com/neeboo/agent-js-fork/issues"
     },
     "keywords": [
         "internet computer",
@@ -34,6 +34,9 @@
     ],
     "main": "build/index.js",
     "module": "build/index.js",
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "build": "rm -rf tsconfig.tsbuildinfo && rm -rf ./build && swc src -d build && tsc-alias",
         "build:watch": "tsc -b --watch",
